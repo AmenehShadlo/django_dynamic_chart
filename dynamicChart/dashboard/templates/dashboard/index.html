@@ -1,0 +1,73 @@
+{% extends "dashboard/layout.html" %}
+
+{% block titlepage %} Dynamic Chart {% endblock%} 
+
+{% block mainContent %}
+
+<div class="container" style="max-width: 80%;margin-top: 30px;">
+    <div class="row" >
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="text-align: center;border:1px solid black;padding: 10px;">
+                <form action="" method="POST">
+                    {% csrf_token %}
+
+                    {{form.Lession}}
+
+                    <input type="text" name="Score"  style="width: 90%;margin: 10px;">
+                    <input type="submit" class="btn btn-success" value="ثبت" style="width: 90%;margin: 10px;">
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+           
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="text-align: center;border:1px solid black">
+            <canvas id="myChart" width="400" height="400"></canvas>
+        <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: { 
+                labels: [{% for data in lessions %} '{{ data }}' , {% endfor %}],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [{{ chartdata }}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script>
+ 
+            </div>
+            <div class="col-md-4"></div>
+           
+        </div>
+    </div>   
+</div>
+
+{% endblock%}

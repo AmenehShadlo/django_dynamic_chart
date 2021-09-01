@@ -1,0 +1,38 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl">
+    <head>
+        <title>dynamic chart</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/bootstrap.css' %} " >
+        <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/fontawesome.css' %} " >
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+        <style>
+            @font-face{
+                font-family: 'IranSanse';
+                src: local('IranSanse'),
+                url('{% static "dashboard/fonts/eot/IRANSansWeb.eot" %}') format('eot'),
+                url('{% static "dashboard/fonts/ttf/IRANSansWeb.ttf" %}') format('ttf'),
+                url('{% static "dashboard/fonts/woff/IRANSansWeb.woff" %}') format('woff'),
+                url('{% static "dashboard/fonts/woff2/IRANSansWeb.woff2" %}') format('woff2');
+            }
+
+            select{
+                    width: 90%;margin: 10px;
+                }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 style="text-align: center;">{% block titlepage %} {% endblock%}</h1>
+            <div class="row">
+                  {% block mainContent %}{% endblock%}
+            </div>
+        </div>
+    </body>
+    <script src="{% static 'dashboard/js/jquery-3.6.0.min.js' %} " ></script>
+    <script src="{% static 'dashboard/js/bootstrap.bundle.js' %} " ></script>
+    <script src="{% static 'dashboard/js/fontawesome.js' %} " ></script>
+   
+</html>
